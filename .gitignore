@@ -1,0 +1,18 @@
+# Sonar
+.sonarqube
+
+# IDE's
+.vs
+*.user
+.config
+
+# .NET
+bin
+obj
+
+# Output tests
+TestResults
+SonarQube.xml
+
+# Appsettings
+appsettings.*.json

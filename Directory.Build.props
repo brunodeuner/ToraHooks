@@ -1,0 +1,33 @@
+<Project
+	ToolsVersion="14.0"
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	InitialTargets="CopyFiles">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>warnings</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Using Remove="Microsoft.Extensions.Logging" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<Target Name="CopyFiles">
+		<ItemGroup>
+			<GitDir Include="$(SolutionDir)\git\**" />
+		</ItemGroup>
+		<Copy
+		  SourceFiles="@(GitDir)"
+		  DestinationFiles="@(GitDir->'$(SolutionDir).git\%(RecursiveDir)%(Filename)%(Extension)')"
+		  SkipUnchangedFiles="true" />
+	</Target>
+
+</Project>

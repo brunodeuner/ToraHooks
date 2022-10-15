@@ -1,0 +1,35 @@
+#!/bin/sh
+LC_ALL=C
+
+# Check version pre-commit
+
+PreCommitOutOfDate=$(diff .git/hooks/pre-commit git/hooks/pre-commit) 
+if [ "$PreCommitOutOfDate" != "" ] 
+then
+	echo "Pre-Commit out of date"
+	exit 1;
+fi
+
+# Dotnet format
+
+## Install depedencies
+dotnet tool install -g dotnet-format --version "7.*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json
+
+## Select files to format
+FILES=$(git diff --cached --name-only --diff-filter=ACM "*.cs*" | sed 's| |\\ |g')
+if [ ! -z "$FILES" ]
+then
+	## Format all selected files
+	echo "$FILES" | cat | xargs | sed -e 's/ /,/g' | xargs dotnet format --include
+
+	## Add back the modified files to staging
+	echo "$FILES" | xargs git add 
+
+	[ ! $? ] && exit $LastExitCode
+fi
+
+# Dotnet test
+
+dotnet test
+
+exit $LastExitCode
