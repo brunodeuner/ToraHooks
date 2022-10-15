@@ -3,7 +3,7 @@
 This repository contains git hooks designed for a better CI
 
 # Directory build props
-- Ensure the use of pre commit
+- Ensure use pre commit
 
 # Pre Commit
 - Verify Pre Commit version
