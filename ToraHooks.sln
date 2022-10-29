@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hooks", "hooks", "{9619466A-F9F2-48C7-896A-A9FB960627B3}"
 	ProjectSection(SolutionItems) = preProject
 		git\hooks\pre-commit = git\hooks\pre-commit
+		git\hooks\prepare-commit-msg = git\hooks\prepare-commit-msg
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToraHooks", "ToraHooks\ToraHooks.csproj", "{C46A3636-1748-4E1F-A02C-577D0189D3E0}"
