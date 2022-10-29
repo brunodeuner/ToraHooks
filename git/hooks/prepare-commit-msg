@@ -1,17 +1,14 @@
 #!/bin/sh
 
-# Regex to check the valid branch name
 VALID_BRANCH_REGEX="(^(feature|fix|release|refactor))|^([A-Z]+\-[0-9]+)$"
 
-# Get branch name and description
 BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
 
-# check the branch name is valid or not
 if [[ "$BRANCH_NAME" =~ $VALID_BRANCH_REGEX ]]; then
   : nothing
 else
-  echo "Branch Name not as per the defined rules like: feature, fix, release, refactor"
-  echo "Current ${BRANCH_NAME}"
+  echo "Disallowed commits on branches that don't start with: feature, fix, release, refactor"
+  echo "Current branch name: ${BRANCH_NAME}"
   exit 1;
 fi
 
