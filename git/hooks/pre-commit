@@ -12,7 +12,7 @@ fi
 
 # Dotnet format
 
-## Install depedencies
+## Install dependencies
 dotnet tool install -g dotnet-format --version "7.*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json
 
 ## Select files to format
