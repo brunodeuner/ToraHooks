@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo teste
-
 # Regex to check the valid branch name
 VALID_BRANCH_REGEX="(^(feature|fix|release|refactor))|^([A-Z]+\-[0-9]+)$"
 
