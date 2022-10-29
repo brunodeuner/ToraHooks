@@ -6,7 +6,7 @@ This repository contains git hooks designed for a better CI
 - Ensure use git hooks
 
 # Pre Commit
-- Verify Pre Commit version
+- Verify git hooks version
 - Run dotnet format
 - Run dotnet test
 
