@@ -3,10 +3,10 @@ LC_ALL=C
 
 # Check version pre-commit
 
-PreCommitOutOfDate=$(diff .git/hooks/pre-commit git/hooks/pre-commit) 
-if [ "$PreCommitOutOfDate" != "" ] 
+HookOutOfDate=$(diff -qr -x "*.sample" .git/hooks/ git/hooks/) 
+if [ "$HookOutOfDate" != "" ] 
 then
-	echo "Pre-Commit out of date"
+	echo "$HookOutOfDate"
 	exit 1;
 fi
 
