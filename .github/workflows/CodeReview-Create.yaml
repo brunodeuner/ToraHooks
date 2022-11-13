@@ -31,7 +31,7 @@ jobs:
                         "op": "add",
                         "path": "/fields/System.IterationPath",
                         "from": null,
-                        "value": "${{ env.current_iteration }}"
+                        "value": ${{ env.current_iteration }}
                     },
                     {
                         "op": "add",
