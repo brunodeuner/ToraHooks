@@ -5,12 +5,14 @@ on:
     types: [opened]
 
 jobs:
-  hello:
+  create-code-review:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') |   
-          
+      - name: Get actual PR number
+        run: |
+          echo "PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')" >> $GITHUB_ENV 
+      - name: Create task 
+        run: |          
           curl --location --request POST 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/$Task?api-version=7.0' \
             --header 'Content-Type: application/json-patch+json' \
             --header 'Authorization: Basic OmpncnJodXNjc3FiNXN4NHFycjNqd2w1NnlncXVwYjd3dGpreGp2djV6N3g3M255ZnFvaGE=' \
@@ -19,7 +21,7 @@ jobs:
                         "op": "add",
                         "path": "/fields/System.Title",
                         "from": null,
-                        "value": "Code review ${PR_NUMBER}"
+                        "value": "Code review ${{PR_NUMBER}}"
                     },
                     {
                         "op": "add",
