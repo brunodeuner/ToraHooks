@@ -16,12 +16,12 @@ jobs:
       - name: Get iteration of work item
         run: |
           echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/${{ env.work_item_id }}?api-version=7.0' \
-            --header 'Authorization: Basic unbml4tuwcexawzao4zbqj37e6fwj7qjy4moa5iiazpjwvkfldqq' | jq '.fields."System.IterationPath"')" >> $GITHUB_ENV 
+            --header 'Authorization: Basic OnVuYm1sNHR1d2NleGF3emFvNHpicWozN2U2ZndqN3FqeTRtb2E1aWlhenBqd3ZrZmxkcXE=' | jq '.fields."System.IterationPath"')" >> $GITHUB_ENV 
       - name: Create task 
         run: |          
           curl --location --request POST 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/$Task?api-version=7.0' \
             --header 'Content-Type: application/json-patch+json' \
-            --header 'Authorization: Basic unbml4tuwcexawzao4zbqj37e6fwj7qjy4moa5iiazpjwvkfldqq' \
+            --header 'Authorization: Basic OnVuYm1sNHR1d2NleGF3emFvNHpicWozN2U2ZndqN3FqeTRtb2E1aWlhenBqd3ZrZmxkcXE=' \
             --data-raw '[
                     {
                         "op": "add",
