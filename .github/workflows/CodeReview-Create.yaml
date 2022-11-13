@@ -19,7 +19,7 @@ jobs:
                         "op": "add",
                         "path": "/fields/System.Title",
                         "from": null,
-                        "value": "Code review $(PR_NUMBER)"
+                        "value": "Code review ${PR_NUMBER}"
                     },
                     {
                         "op": "add",
