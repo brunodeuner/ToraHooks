@@ -10,10 +10,12 @@ jobs:
     steps:
       - name: Get work_item_link
         run: |
-          body=$(cat <<"EOF" \
-            ${{ github.event.pull_request.body }} \
-            EOF \
-            ) |
+          echo "body=$(cat <<"EOF" 
+            ${{ github.event.pull_request.body }} 
+            EOF 
+            )" >> $GITHUB_ENV  
+      - name: Get work_item_link 2
+        run: |
           echo "work_item_link=$(echo $body | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV  
       - name: Get iteration of work item
         run: |
