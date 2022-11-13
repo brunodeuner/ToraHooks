@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Get work_item_link
         run: |
-          echo "work_item_link=$(echo $PULL_REQUEST_BODY | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV  
+          echo "work_item_link=$(echo "$PULL_REQUEST_BODY" | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV  
         env: 
           PULL_REQUEST_BODY : ${{ github.event.pull_request.body }}
       - name: Get iteration of work item
