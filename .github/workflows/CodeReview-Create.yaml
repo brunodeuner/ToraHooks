@@ -13,7 +13,7 @@ jobs:
           echo "PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')" >> $GITHUB_ENV 
       - name: Get actual iteration
         run: |
-          echo "current_iteration = $(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/abc/_apis/work/teamsettings/iterations?$timeframe=current&api-version=7.0' \
+          echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/abc/_apis/work/teamsettings/iterations?$timeframe=current&api-version=7.0' \
             --header 'Authorization: Basic OjNtZ3F6d3Z2d2VuY2UycWtqNTVvbHFrNnlvY3NqNHpoc21lZDdodmx6cm12cXNqenIyZ3E=' | jq '.value[0].path')" >> $GITHUB_ENV 
       - name: Create task 
         run: |          
