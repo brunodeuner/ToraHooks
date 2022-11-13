@@ -1,0 +1,36 @@
+name: Code review create on pull request opened
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl --location --request POST 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/$Revisão?api-version=7.0' \
+            --header 'Content-Type: application/json-patch+json' \
+            --header 'Authorization: Basic OmpncnJodXNjc3FiNXN4NHFycjNqd2w1NnlncXVwYjd3dGpreGp2djV6N3g3M255ZnFvaGE=' \
+            --data-raw '[
+              {
+                "op": "add",
+                "path": "/fields/System.Title",
+                "from": null,
+                "value": "Code review $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')"
+              },
+                {
+                "op": "add",
+                "path": "/fields/System.IterationPath",
+                "from": null,
+                "value": "teste\\Iteration 1"
+              },
+              {
+                "op": "add",
+                "path": "/relations/-",
+                "value": {
+                  "rel": "System.LinkTypes.Hierarchy-Reverse",
+                  "url": "https://dev.azure.com/brunodeuner/_apis/wit/workItems/40"
+                }
+              }
+            ]'
