@@ -11,7 +11,7 @@ jobs:
       - run: |
           PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') |   
           
-          curl --location --request POST 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/$Revis„o?api-version=7.0' \
+          curl --location --request POST 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/$Revis√£o?api-version=7.0' \
             --header 'Content-Type: application/json-patch+json' \
             --header 'Authorization: Basic OmpncnJodXNjc3FiNXN4NHFycjNqd2w1NnlncXVwYjd3dGpreGp2djV6N3g3M255ZnFvaGE=' \
             --data-raw '[
