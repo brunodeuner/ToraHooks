@@ -10,7 +10,11 @@ jobs:
     steps:
       - name: Get work_item_link
         run: |
-          echo "work_item_link=$(echo "${{ github.event.pull_request.body }}" | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV 
+          body=$(cat <<"EOF" \
+            ${{ github.event.pull_request.body }} \
+            EOF \
+            ) |
+          echo "work_item_link=$(echo $body | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV  
       - name: Get iteration of work item
         run: |
           echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/{{ env.work_item_link }}?api-version=7.0' \
