@@ -10,11 +10,10 @@ jobs:
     steps:
       - uses: 8BitJonny/gh-get-current-pr@2.1.3
         id: PR
+      - run: echo "Your PR number is ${{ steps.PR.outputs.number }} and its JSON is ${{ steps.PR.outputs.pr }}"
       - name: Get work_item_link
         run: |
-          echo "work_item_link=$(echo ${prBody} | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV 
-        env:
-          prBody: ${{ steps.PR.outputs.pr_body }}
+          echo "work_item_link=$(echo ${{ steps.PR.outputs.pr_body }} | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV 
       - name: Get iteration of work item
         run: |
           echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/{{ env.work_item_link }}?api-version=7.0' \
