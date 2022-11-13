@@ -12,7 +12,9 @@ jobs:
         id: PR
       - name: Get work_item_link
         run: |
-          echo "work_item_link=$(${{ steps.PR.outputs.pr_body }} | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV 
+          echo "work_item_link=$(echo ${prBody} | grep "link_work_item" | grep -oE "[^/]+$")" >> $GITHUB_ENV 
+        env:
+          prBody: ${{ steps.PR.outputs.pr_body }}
       - name: Get iteration of work item
         run: |
           echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/{{ env.work_item_link }}?api-version=7.0' \
