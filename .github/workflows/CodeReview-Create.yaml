@@ -8,14 +8,14 @@ jobs:
   create-code-review:
     runs-on: ubuntu-latest
     steps:
-      - name: Get work_item_link
+      - name: Get work_item_id
         run: |
-          echo "work_item_link=$(echo "$PULL_REQUEST_BODY" | grep "link_work_item" | grep -oE "[^/]+$" | awk '{print $1}' | tr -dc '0-9')" >> $GITHUB_ENV  
+          echo "work_item_id=$(echo "$PULL_REQUEST_BODY" | grep "link_work_item" | grep -oE "[^/]+$" | awk '{print $1}' | tr -dc '0-9')" >> $GITHUB_ENV  
         env: 
           PULL_REQUEST_BODY : ${{ github.event.pull_request.body }}
       - name: Get iteration of work item
         run: |
-          echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/${{ env.work_item_link }}?api-version=7.0' \
+          echo "current_iteration=$(curl --location --request GET 'https://dev.azure.com/brunodeuner/teste/_apis/wit/workitems/${{ env.work_item_id }}?api-version=7.0' \
             --header 'Authorization: Basic OmpncnJodXNjc3FiNXN4NHFycjNqd2w1NnlncXVwYjd3dGpreGp2djV6N3g3M255ZnFvaGE=' | jq '.fields."System.IterationPath"')" >> $GITHUB_ENV 
       - name: Create task 
         run: |          
@@ -40,7 +40,7 @@ jobs:
                         "path": "/relations/-",
                         "value": {
                             "rel": "System.LinkTypes.Hierarchy-Reverse",
-                            "url": "${{ env.work_item_link }}"
+                            "url": "https://dev.azure.com/brunodeuner/teste/_workitems/edit/${{ env.work_item_id }}"
                         }
                     }
                 ]'
