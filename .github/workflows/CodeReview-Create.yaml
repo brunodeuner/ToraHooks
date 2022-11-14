@@ -9,14 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Teste github
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo ${{ github }} 
-      - name: Teste event
-        run: |
-          echo ${{ github.event }} 
-      - name: Teste event pull request
-        run: |
-          echo ${{ github.event.pull_request }} 
+          echo "$GITHUB_CONTEXT"
       - name: Get work_item_id
         run: |
           echo "work_item_id=$(echo "$PULL_REQUEST_BODY" | grep "link_work_item" | grep -oE "[^/]+$" | awk '{print $1}' | tr -dc '0-9')" >> $GITHUB_ENV  
