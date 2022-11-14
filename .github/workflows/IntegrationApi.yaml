@@ -1,4 +1,4 @@
-name: Code review create on pull request opened
+name: Integration api
 
 on:
   pull_request:
