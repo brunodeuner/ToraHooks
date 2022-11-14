@@ -1,0 +1,19 @@
+name: Code review create on pull request opened
+
+on:
+  pull_request:
+    types: [opened, edited]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, deleted]
+
+jobs:
+  create-code-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Teste github
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"

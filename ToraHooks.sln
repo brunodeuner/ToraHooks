@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToraHooks", "ToraHooks\Tora
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToraHooksTest", "ToraHooksTest\ToraHooksTest.csproj", "{147433E9-870F-4ABF-B5AA-B5EA90B7E46C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F985276A-5DD0-4916-95CC-6DA9AC42519B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{D1A8B9DC-06A5-4307-9A45-198C300A89F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9619466A-F9F2-48C7-896A-A9FB960627B3} = {B00A4C16-D1DB-4533-9796-BF7E3399DFA5}
+		{D1A8B9DC-06A5-4307-9A45-198C300A89F9} = {F985276A-5DD0-4916-95CC-6DA9AC42519B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C318E3A4-0299-488E-89C8-65A2CD54685D}
