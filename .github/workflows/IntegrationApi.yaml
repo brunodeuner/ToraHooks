@@ -1,0 +1,21 @@
+name: Integration api
+
+on:
+  pull_request:
+    types: [opened, edited]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+  issue_comment:
+    types: [created, edited, deleted]
+
+jobs:
+  create-code-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Teste github
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
